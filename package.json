@@ -2,12 +2,23 @@
   "name": "circleprogress",
   "version": "0.1.0",
   "private": true,
+  "main": "index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "keywords": [
+    "vue",
+    "web",
+    "component",
+    "circle",
+    "progress"
+  ],
+  "author": "cgdong",
+  "license": "MIT",
   "dependencies": {
+    "lodash": "^4.17.11",
     "vue": "^2.6.6"
   },
   "devDependencies": {
