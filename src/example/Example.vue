@@ -23,6 +23,7 @@
 </template>
 <script>
 import CircleProgress from "../components/CircleProgress";
+// import CircleProgress from 'vue-circleprogressbar';
 export default {
   data() {
     return {};

@@ -1,1 +1,3 @@
-export {default} from './components/CircleProgress.vue';
+import CircleProgress from './components/CircleProgress.vue';
+
+export default CircleProgress;

@@ -1,8 +1,8 @@
 {
-  "name": "circleprogress",
-  "version": "0.1.0",
-  "private": true,
-  "main": "index.js",
+  "name": "vue-circleprogressbar",
+  "version": "0.1.1",
+  "main": "src/index.js",
+  "description": "vue环形进度条",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -15,7 +15,12 @@
     "circle",
     "progress"
   ],
-  "author": "cgdong",
+  "author": [
+    {
+      "name": "cgdong",
+      "email": "349008059@qq.com"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.11",

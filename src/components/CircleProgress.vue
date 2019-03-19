@@ -31,8 +31,14 @@
 import _ from "lodash";
 export default {
   props: {
-    radius: [Number, String], // 进度条厚度
-    progress: [Number, String], // 进度条百分比
+    radius: {
+      type: [Number, String],
+      default: 20
+    }, // 进度条厚度
+    progress: {
+      type: [Number, String],
+      default: 20
+    }, // 进度条百分比
     barColor: {
       type: String,
       default: "#1890ff"
