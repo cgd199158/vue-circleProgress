@@ -20,7 +20,7 @@ $ npm install vue-circleprogressbar
     </div>
 </template>
 <script>
-import Circleprogressbar from 'vur-circleprogressbar';
+import CircleProgress from 'vue-circleprogressbar';
 export default {
   data() {
     return {};
@@ -44,7 +44,7 @@ export default {
 |`isRound`|是否使用圆形画笔|`true`|`Bollean`|
 |`duration`|动画时长|`1000`|`Number, String`|
 |`delay`|动画延迟时间|`200`|`Number, String`|
-|`timeFunction`|`'cubic-bezier(0.99, 0.01, 0.22, 0.94)'`|`String`|
+|`timeFunction`|动画缓动函数|`'cubic-bezier(0.99, 0.01, 0.22, 0.94)'`|`String`|
 
 ## slot
 |名字|说明|默认值|类型|
