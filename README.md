@@ -1,7 +1,18 @@
 # vue-circleprogressbar
 * **一个简单的环形进度条组件**
+> 最近在开发可视化大屏项目中经常会用到环形进度条,但是常用的echarts组件对环形进度条的支持不太好,写起来比较麻烦.就想着自己写一个VUE的环形组件,满足自己日常开发需求;
 
-![演示图片](/static/img/demo.png)
+>2019/12/21: 
+1.完善bar的宽度逻辑,bar的宽度根据父容器的宽度进行自适应,可自定义```widthPresent```设置bar占父容器宽度的比例;
+2.添加渐变色```gradientsColor```
+3.去掉lodash依赖
+
+# vue-circleprogressbar
+* **一个简单的环形进度条组件**
+> 先上效果图
+![demo.png](https://upload-images.jianshu.io/upload_images/16911973-b9a88f6edebb0307.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
 ## Installation
 ```
 $ npm install vue-circleprogressbar
@@ -20,7 +31,7 @@ $ npm install vue-circleprogressbar
     </div>
 </template>
 <script>
-import CircleProgress from 'vue-circleprogressbar';
+import CircleProgress  from 'vur-circleprogressbar';
 export default {
   data() {
     return {};
@@ -35,6 +46,8 @@ export default {
 ## Optiosn
 |名字|说明|默认值|类型|
 |:---|---|---|---|
+|`widthPresent`|设置bar占父容器宽度的比例|`1`|`Number`|
+|`gradientsColor`|bar渐变色设置|`[ { offset: "0%", color: "#b2ed9d" },{ offset: "100%", color: "#569b3d" } ]`|`Array`|
 |`id`|组件的id,用于处理多组件共存|`1`|`Number, String`|
 | `radius`|进度条的厚度|`20`|`Number, String`|
 |`progress`|进度条百分比|`20`|`Number, String`|

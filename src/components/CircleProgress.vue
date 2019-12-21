@@ -1,18 +1,34 @@
 <template>
   <div class="content" ref="box">
-    <svg style="transform: rotate(-90deg)" :width="width" :height="width" xmlns="http://www.w3.org/2000/svg">
-      <circle :r="(width-radius)/2"
+    <svg
+      style="transform: rotate(-90deg)"
+      :width="width"
+      :height="width"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <linearGradient :id="`gradient-${id}`" gradientUnits="userSpaceOnUse">
+        <stop
+          v-for="(item, index) in gradientsColor"
+          :key="index"
+          :offset="item.offset"
+          :stop-color="item.color"
+        />
+      </linearGradient>
+      <circle
+        :r="(width-radius)/2"
         :cy="width/2"
         :cx="width/2"
         :stroke-width="radius"
         :stroke="backgroundColor"
         fill="none"
       />
-      <circle ref="$bar"
+      <circle
+        v-if="gradientsColorShow"
+        ref="$bar"
         :r="(width-radius)/2"
         :cy="width/2"
         :cx="width/2"
-        :stroke="barColor"
+        :stroke="gradientsColor ? `url(#gradient-${id})` : barColor"
         :stroke-width="radius"
         :stroke-linecap="isRound ? 'round' : 'square'"
         :stroke-dasharray="(width-radius)*3.14"
@@ -21,16 +37,24 @@
       />
     </svg>
     <div class="center_text">
-        <p v-if="!$slots.default" class="title">{{progress}}%</p>
-        <slot></slot>
+      <p v-if="!$slots.default" class="title">{{progress}}%</p>
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
-import _ from "lodash";
+// import _ from "lodash";
 export default {
   props: {
+    widthPresent: {
+      type: Number,
+      default: 1
+    },
+    gradientsColor: {
+      type: [Boolean, Array],
+      default: false
+    },
     radius: {
       type: [Number, String],
       default: 20
@@ -80,34 +104,37 @@ export default {
   },
   data() {
     return {
-      width: 100,
+      width: 200,
       idStr: `circle_progress_keyframes_${this.id}`
     };
   },
-  beforeDestroy() {
-    // 清除旧组件的样式标签
-    document.getElementById(this.idStr) &&
-      document.getElementById(this.idStr).remove();
-    window.addEventListener(() => {});
+  computed: {
+    gradientsColorShow: function() {
+      return true;
+    }
   },
+  // beforeDestroy() {
+  //   // 清除旧组件的样式标签
+  //   document.getElementById(this.idStr) &&
+  //     document.getElementById(this.idStr).remove();
+  //   window.addEventListener(() => {});
+  // },
   mounted() {
     let self = this;
     this.setCircleWidth();
     this.setAnimation();
     // 此处不能使用window.onresize
-    window.addEventListener(
-      "resize",
-      _.debounce(function() {
-        self.setCircleWidth();
-        self.setAnimation(self);
-      }, 300)
-    );
+    window.addEventListener("resize", function() {
+      self.setCircleWidth();
+      self.setAnimation(self);
+    });
   },
   methods: {
     setCircleWidth() {
+      const { widthPresent } = this;
       let box = this.$refs.box;
-      let width = box.clientWidth;
-      let height = box.clientHeight;
+      let width = box.clientWidth * widthPresent;
+      let height = box.clientHeight * widthPresent;
       let cW = width > height ? height : width;
       this.width = cW;
     },
